@@ -1,0 +1,10 @@
+glib
+icu
+json-glib
+libffi
+libpsl
+libsoup3
+libxml2
+meson make
+samurai make
+sqlite

@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed "/subdir('po/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+    -Dprefix=/usr \
+    -Dbuildtype=plain \
+    -Dsysconfdir=/etc \
+    -Denable-installed-tests=false \
+    -Denable-gtk-doc=false \
+    -Dsoup2=false \
+    output
+
+ninja -C output
+ninja -C output install
