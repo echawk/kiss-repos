@@ -1,2 +1,3 @@
 https://github.com/elogind/elogind/archive/v246.9.tar.gz
+patches/posix-ln-realpath.patch
 files/elogind.run

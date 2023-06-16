@@ -1,0 +1,16 @@
+diff --git a/meson.build b/meson.build
+index 144e354..ea16356 100644
+--- a/meson.build
++++ b/meson.build
+@@ -39,10 +39,7 @@ substs.set('PROJECT_VERSION',      meson.project_version(),
+ # the wrong result when elogind is being built as a meson subproject
+ project_source_root = meson.current_source_dir()
+ project_build_root = meson.current_build_dir()
+-relative_source_path = run_command('realpath',
+-                                   '--relative-to=@0@'.format(project_build_root),
+-                                   project_source_root).stdout().strip()
+-conf.set_quoted('RELATIVE_SOURCE_PATH', relative_source_path)
++conf.set_quoted('RELATIVE_SOURCE_PATH', '..')
+ 
+ #if 0 /// fuzz regression tests are not supported by elogind
+ # want_ossfuzz = get_option('oss-fuzz')

@@ -2,10 +2,7 @@
 
 export DESTDIR="$1"
 
-if ! [ "$(kiss owns "$(command -v ln)")" = "coreutils" ]; then
-    echo "'ln' needs to be from coreutils"
-    exit 1
-fi
+patch -p1 < posix-ln-realpath.patch
 
 sed "/subdir('po/d" meson.build > _
 mv -f _ meson.build
