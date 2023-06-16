@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+meson setup \
+    -Dprefix=/usr \
+    -Dlibdir=/usr/lib \
+    -Dbuildtype=plain \
+    -Dgtk_doc=disabled \
+    output
+
+ninja -C output
+ninja -C output install
