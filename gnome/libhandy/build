@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+meson setup \
+    -Dprefix=/usr \
+    -Dsysconfdir=/etc \
+    -Dlocalstatedir=/var \
+    -Dbuildtype=plain \
+    -Dprofiling=false \
+    -Dexamples=false \
+    -Dgtk_doc=false \
+    -Dtests=false \
+    output
+
+ninja -C output
+ninja -C output install
