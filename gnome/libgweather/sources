@@ -1,0 +1,2 @@
+# NOTE: git repo is only because they have fixed libsoup upstream
+git+https://gitlab.gnome.org/GNOME/libgweather/

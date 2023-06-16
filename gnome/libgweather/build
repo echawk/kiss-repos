@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed "/geocode-glib/s/1.0/2.0/" meson.build > _
+mv -f _ meson.build
+
+command -v vala && vala=true
+
+meson setup \
+    -Dprefix=/usr \
+    -Dsysconfdir=/etc \
+    -Dbuildtype=plain \
+    -Dgtk_doc=false \
+    -Denable_vala="${vala:-false}" \
+    -Dtests=false \
+    output
+
+ninja -C output
+ninja -C output install

@@ -1,0 +1,7 @@
+geocode-glib
+glib
+gtk+3
+libxml2
+meson        make
+samurai      make
+sqlite
