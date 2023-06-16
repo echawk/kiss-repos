@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+export CFLAGS="$CFLAGS -I/usr/include/gnu-libiconv"
+
+sed -e '/GETTEXT/d' \
+    -e '/Intltool/d' \
+    -e '/(po)/d' CMakeLists.txt > _
+mv -f _ CMakeLists.txt
+
+# NOTE: sed -i is needed here
+sed -i 's/_//g'      data/*gschema*
+
+cmake -B build \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+    -DLIBEXEC_INSTALL_DIR=/usr/bin \
+    -DSYSCONF_INSTALL_DIR=/etc \
+    -DCMAKE_BUILD_TYPE=None \
+    -DWITH_OPENLDAP=OFF \
+    -DWITH_PHONENUMBER=OFF \
+    -DENABLE_GTK4=OFF \
+    -DENABLE_GOA=OFF \
+    -DENABLE_GOOGLE=OFF \
+    -DENABLE_UOA=OFF \
+    -DENABLE_WEATHER=OFF \
+    -DENABLE_INTROSPECTION=ON \
+    -DENABLE_VALA_BINDINGS=ON \
+    -DWITH_SYSTEMUSERUNITDIR=no \
+    -DWITH_LIBDB=OFF
+
+cmake --build   build
+cmake --install build
