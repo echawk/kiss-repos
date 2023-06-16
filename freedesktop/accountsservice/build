@@ -1,0 +1,33 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+# TODO: Investigate if something like this can fix the release tarballs.
+#git init
+#git add .
+#git commit -m "fix stupid generate-version script"
+
+sed -e "/path_wtmp/s/utx.log/wtmp/" \
+    -e "/assert(.*path_wtmp/d" \
+    meson.build > _
+mv -f _ meson.build
+
+patch -p1 < musl-fgetspent_r.patch
+
+meson setup \
+    -Dprefix=/usr \
+    -Dlibexecdir=/usr/lib/accountsservice \
+    -Dbuildtype=plain \
+    -Dlibdir=lib \
+    -Dsystemdsystemunitdir=no \
+    -Delogind=true \
+    -Dintrospection=true \
+    -Ddocbook=false \
+    -Dgtk_doc=false \
+    output
+
+ninja -C output
+ninja -C output install
+
+mkdir -p "$1/var/lib/AccountsService/users"
+mkdir -p "$1/var/lib/AccountsService/icons"

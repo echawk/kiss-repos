@@ -1,0 +1,4 @@
+git+https://gitlab.freedesktop.org/accountsservice/accountsservice.git
+# NOTE: I'd like to move to using the standard releases, however they seem to be broken.
+#https://www.freedesktop.org/software/accountsservice/accountsservice-git.tar.xz
+patches/musl-fgetspent_r.patch

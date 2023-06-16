@@ -1,0 +1,5 @@
+elogind
+glib
+meson make
+polkit
+samurai make
