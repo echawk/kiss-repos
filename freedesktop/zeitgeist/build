@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+patch -p1 < no-gettext.patch
+
+NOCONFIGURE=1 autoreconf -fi
+
+touch po/Makefile.in.in
+printf 'all:\n\ttrue\ninstall:\n\ttrue\nclean:\n\ttrue\n' > po/Makefile
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --libexecdir=/usr/lib \
+    --enable-fts \
+    --without-dee-icu \
+    --disable-nls
+
+sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+make
+make install
+
+rm -rf "$1/usr/lib/systemd"
+rm -rf "$1/usr/share/zeitgeist/doc"
