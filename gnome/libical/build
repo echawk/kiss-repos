@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+command -v vala && vapi=true
+pkg-config --exists gobject-introspection-1.0 && gir=true
+
+cmake -B build \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    -DSHARED_ONLY=true \
+    -DENABLE_GTK_DOC=false \
+    -DGOBJECT_INTROSPECTION="${gir:-false}" \
+    -DICAL_GLIB_VAPI="${vapi:-false}"
+
+cmake --build   build
+cmake --install build

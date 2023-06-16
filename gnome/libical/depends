@@ -1,0 +1,5 @@
+cmake make
+db
+glib
+icu
+libxml2
