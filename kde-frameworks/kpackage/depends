@@ -1,0 +1,7 @@
+cmake               make
+extra-cmake-modules make
+karchive
+kcoreaddons
+ki18n
+qt5
+samurai             make

@@ -1,0 +1,21 @@
+cmake               make
+extra-cmake-modules make
+kauth
+kcodecs
+kcoreaddons
+kglobalaccel
+kguiaddons
+ki18n
+kiconthemes
+kio
+kjobwidgets
+knotifications
+kpackage
+kservice
+kwidgetsaddons
+kwindowsystem
+qt5
+qt5-declarative
+qt5-tools           make
+samurai             make
+solid

@@ -1,0 +1,8 @@
+cmake               make
+extra-cmake-modules make
+kcoreaddons
+kcrash
+kdbusaddons
+kservice
+qt5
+samurai             make

@@ -1,0 +1,11 @@
+cmake               make
+extra-cmake-modules make
+kconfig
+kcoreaddons
+kcrash
+kdbusaddons
+kwindowsystem
+qt5
+qt5-tools
+qt5-x11extras
+samurai             make

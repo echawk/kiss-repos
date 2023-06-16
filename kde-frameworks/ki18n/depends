@@ -1,0 +1,6 @@
+cmake               make
+extra-cmake-modules make
+python              make
+qt5-declarative
+qt5-tools
+samurai             make

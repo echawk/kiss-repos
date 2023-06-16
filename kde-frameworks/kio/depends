@@ -1,0 +1,28 @@
+cmake               make
+extra-cmake-modules make
+karchive
+kauth
+kbookmarks
+kcodecs
+kcompletion
+kconfig
+kconfigwidgets
+kcoreaddons
+kcrash
+kdbusaddons
+ki18n
+kiconthemes
+kitemviews
+kjobwidgets
+kservice
+solid
+ktextwidgets
+kwidgetsaddons
+kwindowsystem
+kxmlgui
+qt5
+qt5-tools
+qt5-x11extras
+samurai             make
+sonnet
+util-linux

@@ -1,0 +1,11 @@
+cmake               make
+extra-cmake-modules make
+kauth
+kcodecs
+kconfig
+kconfigwidgets
+kcoreaddons
+kwidgetsaddons
+kxmlgui
+qt5
+samurai             make

@@ -1,0 +1,9 @@
+attica
+cmake               make
+extra-cmake-modules make
+kcompletion
+kcoreaddons
+kwidgetsaddons
+qt5-tools
+qt5-x11extras
+samurai             make

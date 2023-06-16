@@ -1,0 +1,7 @@
+cmake               make
+extra-cmake-modules make
+kconfig
+kcoreaddons
+qt5
+qt5-tools           make
+samurai             make

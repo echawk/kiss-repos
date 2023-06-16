@@ -1,0 +1,9 @@
+boost
+cmake               make
+extra-cmake-modules make
+kactivities
+kconfig
+qt5
+qt5-declarative
+qt5-tools
+samurai             make

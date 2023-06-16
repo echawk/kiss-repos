@@ -1,0 +1,15 @@
+cmake               make
+extra-cmake-modules make
+kauth
+kcodecs
+kconfig
+kconfigwidgets
+kcoreaddons
+kglobalaccel
+ki18n
+kiconthemes
+kitemviews
+kwidgetsaddons
+kwindowsystem
+qt5
+samurai             make

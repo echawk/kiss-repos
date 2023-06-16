@@ -1,0 +1,6 @@
+cmake               make
+extra-cmake-modules make
+kirigami2
+qt5
+qt5-quickcontrols2
+samurai             make

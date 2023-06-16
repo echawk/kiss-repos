@@ -1,0 +1,13 @@
+cmake               make
+dbus
+extra-cmake-modules make
+kconfig
+kcoreaddons
+kdbusaddons
+ki18n
+kpty
+kservice
+qt5
+qt5-x11extras
+samurai             make
+sudo
