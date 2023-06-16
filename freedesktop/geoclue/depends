@@ -1,0 +1,4 @@
+glib
+libsoup3
+meson   make
+samurai make
