@@ -1,0 +1,7 @@
+automake make
+glib
+libffi
+libgudev
+libusb
+meson make
+samurai make

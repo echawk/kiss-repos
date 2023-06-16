@@ -1,0 +1,25 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+patch -p1 < libudev-zero.patch
+
+sed -e "/subdir('po/d" \
+    -e "/subdir('doc/d" \
+    -e "/subdir('rules/d" \
+    meson.build > _
+mv -f _ meson.build
+
+# TODO check for introspection
+# TODO see if libgudev can be disabled.
+
+meson setup \
+    -Dprefix=/usr \
+    -Dgtk-doc=false \
+    -Dman=false \
+    -Didevice=disabled \
+    -Dsystemdsystemunitdir='no' \
+    output
+
+ninja -C output
+ninja -C output install
