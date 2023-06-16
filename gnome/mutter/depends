@@ -1,0 +1,17 @@
+glib
+gnome-desktop
+gnome-settings-daemon make
+graphene
+libICE
+libSM
+libXtst
+libcanberra
+libgudev
+libinput
+libxkbcommon
+libxkbfile
+meson                 make
+pkgconf make
+samurai               make
+startup-notification
+xorg-server

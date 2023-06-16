@@ -1,0 +1,37 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+# Needed to fix libudev-zero support.
+sed -e "/have_libgudev/s/have_libgudev/false/" \
+    data/meson.build > _
+
+# Remove gtk4 dependency check & fix libudev-zero support.
+sed -e '/gtk4_dep/d' \
+    -e "/udev_dep/s/'udev'/'libudev'/" \
+    meson.build > _
+mv -f _ meson.build
+
+pkg-config --exists wayland && wayland=true
+
+    # mutter 44 requires below for xwayland toggling.
+    #-Dxwayland=false \
+meson setup \
+    -Dprefix=/usr \
+    -Dlibexecdir=/usr/lib/mutter \
+    -Dsysconfdir=/etc \
+    -Dlocalstatedir=/var \
+    -Dbuildtype=plain \
+    -Dtests=false \
+    -Degl_device=true \
+    -Dudev=true \
+    -Dnative_backend=true \
+    -Dintrospection=true \
+    -Dwayland=false \
+    -Dlibwacom=false \
+    -Dremote_desktop=false \
+    -Dprofiler=false \
+    output
+
+ninja -C output
+ninja -C output install
