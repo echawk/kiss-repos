@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+make -f ./Makefile.sharedlibrary
+make -f ./Makefile.sharedlibrary install DESTDIR="$1" INSTALL_PREFIX="/usr"
+mkdir -p "$1/usr/lib/pkgconfig/"
+sed "s/@VERSION@/$2/" duktape.pc > "$1/usr/lib/pkgconfig/duktape.pc"
