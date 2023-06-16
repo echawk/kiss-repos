@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+# TODO add check for vala
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --mandir=/usr/share/man \
+    --localstatedir=/var \
+    --enable-vala-bindings
+
+make
+make install
+
+rm -rf "$1/usr/share/gtk-doc"

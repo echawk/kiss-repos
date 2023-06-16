@@ -1,0 +1,7 @@
+autoconf  make
+automake  make
+dbus
+dbus-glib
+glib
+python
+vala      make
