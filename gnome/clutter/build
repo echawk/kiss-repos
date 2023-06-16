@@ -1,0 +1,20 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+pkg-config --exists wayland && wayland=en
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --mandir=/usr/share/man \
+    --localstatedir=/var \
+    --with-x \
+    --enable-gdk-backend \
+    --enable-egl-backend \
+    --disable-wayland-backend \
+    --enable-x11-backend \
+    --enable-evdev-input
+
+make
+make install
