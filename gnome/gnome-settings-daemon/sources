@@ -1,0 +1,3 @@
+https://download.gnome.org/sources/gnome-settings-daemon/MAJOR/gnome-settings-daemon-VERSION.tar.xz
+patches/no-wacom.patch
+patches/no-nm.patch

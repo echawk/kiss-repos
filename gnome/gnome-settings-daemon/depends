@@ -1,0 +1,9 @@
+alsa-lib
+geoclue
+geocode-glib
+libgudev
+libnotify
+meson make
+pkgconf      make
+samurai make
+upower
