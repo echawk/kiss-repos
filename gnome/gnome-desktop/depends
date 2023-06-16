@@ -1,0 +1,9 @@
+gobject-introspection
+gsettings-desktop-schemas
+gtk+3
+iso-codes                 make
+libseccomp
+meson make
+pkgconf                   make
+samurai make
+xkeyboard-config          make

@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed -e "/'test-.*'/d" meson.build > _
+mv -f _ meson.build
+
+# TODO: add check for gtk+4
+
+meson setup \
+    -Dprefix=/usr \
+    -Dsysconfdir=/etc \
+    -Dmandir=/usr/share/man \
+    -Dlocalstatedir=/var \
+    -Dbuildtype=plain \
+    -Dbuild_gtk4=false \
+    -Dudev=enabled \
+    -Dinstalled_tests=false \
+    -Dgtk_doc=false \
+    -Ddesktop_docs=false \
+    output
+
+ninja -C output
+ninja -C output install
