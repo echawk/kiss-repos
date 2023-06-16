@@ -1,0 +1,10 @@
+#elogind is optional -> required for sddm
+#pam -> auth
+#shadow -> altnerative auth
+duktape
+expat
+glib
+meson make
+pkgconf  make
+python   make
+samurai make
