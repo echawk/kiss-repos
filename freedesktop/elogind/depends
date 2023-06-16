@@ -1,0 +1,6 @@
+coreutils make
+gperf     make
+libcap
+meson     make
+pam
+samurai   make

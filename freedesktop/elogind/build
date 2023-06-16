@@ -1,0 +1,33 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+if ! [ "$(kiss owns "$(command -v ln)")" = "coreutils" ]; then
+    echo "'ln' needs to be from coreutils"
+    exit 1
+fi
+
+sed "/subdir('po/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+    -Dprefix=/usr \
+    -Dlibdir=/usr/lib \
+    -Dlibexecdir=/usr/lib/elogind \
+    -Dbuildtype=plain \
+    -Dcgroup-controller=elogind \
+    -Ddbuspolicydir=/etc/dbus-1/system.d \
+    -Dreboot-path=/usr/bin/reboot \
+    -Ddefault-hierarchy=hybrid \
+    -Ddefault-kill-user-processes=false \
+    -Dpolkit=true \
+    build
+
+ninja -C build
+ninja -C build install
+
+ln -s elogind       "$1/usr/include/systemd"
+ln -s libelogind.pc "$1/usr/lib/pkgconfig/libsystemd.pc"
+ln -s libelogind.pc "$1/usr/lib/pkgconfig/libsystemd-logind.pc"
+
+install -Dm755 elogind.run "$1/etc/sv/elogind/run"
