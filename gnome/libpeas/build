@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+rm -rf subprojects/
+
+command -v vala && vapi=true
+
+meson setup \
+    -Dprefix=/usr \
+    -Dvapi="${vapi:-false}" \
+    -Ddemos=false \
+    -Dgtk_doc=false \
+    output
+
+ninja -C output
+ninja -C output install
