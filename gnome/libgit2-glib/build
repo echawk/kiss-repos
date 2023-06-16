@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+command -v vala && vapi=true
+
+meson setup \
+    -Dprefix=/usr \
+    -Dbuildtype=plain \
+    -Dintrospection=true \
+    -Dssh=false \
+    -Dpython=false \
+    -Dvapi="${vapi:-false}" \
+    -Dgtk_doc=false \
+    output
+
+ninja -C output
+ninja -C output install

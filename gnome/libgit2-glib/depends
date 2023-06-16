@@ -1,0 +1,5 @@
+glib
+libgit2
+meson   make
+python
+samurai make
