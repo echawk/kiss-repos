@@ -1,0 +1,53 @@
+#!/bin/sh -e
+
+patch -p1 < egl-x11.patch
+
+# Without this folder, Qt can't find its header files.
+mkdir -p .git
+
+# Don't link against execinfo.h.
+sed 's/define QLOG/define N/g' \
+    src/corelib/global/qlogging.cpp > _
+mv -f _ src/corelib/global/qlogging.cpp
+
+sed 's/FREEBSD)/FREEBSD) || defined(Q_OS_LINUX) \&\& !defined(__GLIBC__)/' \
+    src/corelib/codecs/qiconvcodec.cpp > _
+mv -f _ src/corelib/codecs/qiconvcodec.cpp
+
+pkg-config --exists dbus-1 || dbus="-no-dbus"
+
+# NOTE: You may want to disable accessibility features below.
+./configure \
+    -confirm-license \
+    -opensource \
+    -prefix /usr \
+    -docdir /usr/share/doc/qt \
+    -headerdir /usr/include/qt \
+    -archdatadir /usr/lib/qt \
+    -datadir /usr/share/qt \
+    -sysconfdir /etc/xdg \
+    -examplesdir /usr/share/doc/qt/examples \
+    -nomake examples \
+    -nomake tests \
+    -opengl \
+    -optimized-qmake \
+    -no-libudev \
+    -no-separate-debug-info \
+    -no-pch \
+    ${dbus:-} \
+    -no-dtls \
+    -no-accessibility \
+    -no-gtk \
+    -no-glib \
+    -system-libjpeg \
+    -system-libpng \
+    -system-sqlite \
+    -system-zlib \
+    -system-freetype \
+    -system-harfbuzz \
+    -silent
+
+make
+make INSTALL_ROOT="$1" install
+
+install -Dm755 qt.conf "$1/usr/bin/qt.conf"

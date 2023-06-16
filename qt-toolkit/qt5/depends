@@ -1,0 +1,34 @@
+bison             make
+cups
+double-conversion
+flex              make
+fontconfig
+freetype-harfbuzz
+gperf             make
+icu
+krb5
+libICE
+libSM
+libX11
+libXext
+libXi
+libXrandr
+libXrender
+libdrm
+libinput
+libjpeg-turbo
+libpng
+libxcb
+libxkbcommon
+linux-headers     make
+mesa
+mtdev
+pcre2
+perl              make
+sqlite
+xcb-util
+xcb-util-image
+xcb-util-keysyms
+xcb-util-renderutil
+xcb-util-wm
+zstd
