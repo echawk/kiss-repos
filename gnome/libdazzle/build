@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed "/subdir('test/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+    -Dprefix=/usr \
+    -Denable_gtk_doc=false \
+    output
+
+ninja -C output
+ninja -C output install
