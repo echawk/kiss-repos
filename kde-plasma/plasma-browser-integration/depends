@@ -1,0 +1,13 @@
+cmake               make
+extra-cmake-modules make
+kactivities
+kconfig
+kdbusaddons
+kfilemetadata
+ki18n
+kio
+knotifications
+krunner
+purpose
+qt5
+samurai             make
