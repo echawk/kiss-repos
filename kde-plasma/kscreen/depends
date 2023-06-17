@@ -1,0 +1,14 @@
+cmake               make
+extra-cmake-modules make
+kcmutils
+kdbusaddons
+kdeclarative
+kglobalaccel
+ki18n
+kiconthemes
+kxmlgui
+libkscreen
+plasma-framework
+qt5
+qt5-sensors
+samurai             make
