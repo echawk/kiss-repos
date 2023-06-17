@@ -1,0 +1,18 @@
+cmake               make
+extra-cmake-modules make
+kcompletion
+kconfigwidgets
+kcoreaddons
+kcrash
+ki18n
+kidletime
+kio
+kjobwidgets
+knotifications
+kservice
+kwallet
+kwidgetsaddons
+qt5
+qt5-x11extras
+samurai             make
+syntax-highlighting
