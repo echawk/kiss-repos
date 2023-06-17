@@ -1,0 +1,24 @@
+breeze-icons
+cmake               make
+extra-cmake-modules make
+kactivities
+kactivities-stats
+kcmutils
+kcrash
+kdbusaddons
+kdeclarative
+kguiaddons
+ki18n
+kiconthemes
+kio
+kirigami2
+kitemmodels
+kitemviews
+kpackage
+kservice
+kwidgetsaddons
+kwindowsystem
+kxmlgui
+plasma-workspace
+qt5
+samurai             make
