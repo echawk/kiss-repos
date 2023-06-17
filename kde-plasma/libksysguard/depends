@@ -1,0 +1,23 @@
+cmake               make
+extra-cmake-modules make
+kauth
+kcompletion
+kconfigwidgets
+kcoreaddons
+kdeclarative
+kglobalaccel
+ki18n
+kiconthemes
+kio
+kjobwidgets
+knewstuff
+kpackage
+kservice
+kwidgetsaddons
+kwindowsystem
+libnl
+lm-sensors
+qt5
+qt5-quickcontrols2
+qt5-x11extras
+samurai             make
