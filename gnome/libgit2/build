@@ -2,6 +2,9 @@
 
 export DESTDIR="$1"
 
+sed "/add_subdirectory(tests)/d" CMakeLists.txt > _
+mv -f _ CMakeLists.txt
+
 cmake -B build \
     -DCMAKE_BUILD_TYPE=None \
     -DCMAKE_INSTALL_PREFIX=/usr \
