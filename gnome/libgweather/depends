@@ -3,5 +3,6 @@ glib
 gtk+3
 libxml2
 meson        make
+python-gobject
 samurai      make
 sqlite

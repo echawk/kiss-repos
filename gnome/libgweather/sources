@@ -1,2 +1,1 @@
-# NOTE: git repo is only because they have fixed libsoup upstream
-git+https://gitlab.gnome.org/GNOME/libgweather/
+https://gitlab.gnome.org/GNOME/libgweather/-/archive/4.3.2/libgweather-4.3.2.tar.gz
