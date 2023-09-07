@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed -e "/subdir('doc/d" \
+    -e "/subdir('man/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+    -Dprefix=/usr \
+    -Dlibcolordcompat=false \
+    -Dsane=true \
+    -Dvapi=true \
+    -Dprint_profiles=true \
+    -Ddaemon_user=colord \
+    -Dargyllcms_sensor=false \
+    -Dsystemd=false \
+    -Dprint_profiles=false \
+    -Dudev_rules=false \
+    -Dbash_completion=false \
+    output
+
+ninja -C output
+ninja -C output install

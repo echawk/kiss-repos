@@ -1,0 +1,10 @@
+dbus
+glib
+lcms
+libgudev
+libgusb
+meson make
+polkit
+samurai make
+sane
+sqlite
