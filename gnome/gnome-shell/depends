@@ -1,0 +1,14 @@
+cairo
+evolution-data-server
+gdk-pixbuf
+gjs
+glib
+gnome-autoar
+gtk+3
+gtk+4
+json-glib
+libX11
+libical
+meson make
+pulseaudio
+samurai make

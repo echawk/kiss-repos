@@ -1,0 +1,3 @@
+https://gitlab.gnome.org/GNOME/gnome-shell/-/archive/VERSION/gnome-shell-VERSION.tar.gz
+git+https://gitlab.gnome.org/GNOME/libgnome-volume-control subprojects/gvc
+patches/gsh.patch
