@@ -1,0 +1,66 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+for p in *.patch; do
+    patch -p1 < "$p"
+done
+
+mkdir -p obj
+
+cat > .mozconfig <<- END
+ac_add_options --enable-application=js
+mk_add_options MOZ_OBJDIR='${PWD}'/obj
+
+ac_add_options --prefix=/usr
+ac_add_options --enable-release
+ac_add_options --enable-hardening
+ac_add_options --enable-optimize
+ac_add_options --enable-rust-simd
+ac_add_options --disable-bootstrap
+ac_add_options --disable-debug
+ac_add_options --disable-debug-symbols
+ac_add_options --disable-jemalloc
+ac_add_options --disable-strip
+ac_add_options --disable-unified-build
+ac_add_options --disable-tests
+
+# System libraries
+ac_add_options --with-system-icu
+ac_add_options --with-system-nspr
+ac_add_options --with-system-zlib
+
+# Features
+ac_add_options --enable-shared-js
+ac_add_options --with-intl-api
+END
+
+# fixed next major cycle
+unset RUSTFLAGS
+export LDFLAGS="$LDFLAGS -Wl,-z,stack-size=1048576"
+
+# If using libc++, CXXSTDLIB needs to be set manually.
+case $("$CC" -print-file-name=libc++.so) in */*)
+    export CXXSTDLIB=c++
+    ;;
+esac
+
+export CFLAGS="$CFLAGS -w"
+export CXXFLAGS="$CXXFLAGS -w"
+
+export RUSTFLAGS="$RUSTFLAGS --remap-path-prefix=$PWD=."
+
+unset CARGO_PROFILE_RELEASE_OPT_LEVEL
+unset CARGO_PROFILE_RELEASE_LTO
+export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=system
+export MOZBUILD_STATE_PATH="$PWD/state"
+export MOZ_NOSPAM=1
+export PYTHON=/usr/bin/python3
+export RUSTFLAGS="$RUSTFLAGS -Cdebuginfo=0"
+
+./mach build
+
+cd obj
+make DESTDIR="$1" install
+
+rm -f -- "$1"/usr/lib/*.ajs

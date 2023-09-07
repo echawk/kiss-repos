@@ -1,0 +1,3 @@
+https://ftp.mozilla.org/pub/firefox/releases/VERSIONesr/source/firefox-VERSIONesr.source.tar.xz
+patches/disable-moz-stackwalk.patch
+patches/fix-musl-build.patch
