@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed -e "/subdir('doc/d" \
+    -e "/subdir('po/d" meson.build > _
+mv -f _ meson.build
+
+meson setup \
+    -Dprefix=/usr \
+    -Dsystemd_session=disable \
+    -Dsystemduserunitdir=/DELETEME \
+    output
+
+ninja -C output
+ninja -C output install
+
+rm -rf "$1/DELETEME"

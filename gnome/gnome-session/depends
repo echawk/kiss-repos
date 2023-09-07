@@ -1,0 +1,13 @@
+elogind
+glib
+gnome-desktop
+gtk+3
+json-glib
+libICE
+libSM
+libX11
+libXcomposite
+libepoxy
+mesa
+meson make
+samurai make
