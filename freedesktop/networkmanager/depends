@@ -1,0 +1,17 @@
+#nss -> or gnutls; one for webengine, one for gnupg2
+bash          make
+curl
+dbus
+iptables
+jansson       make
+libgudev
+libndp
+libpsl
+linux-headers make
+meson make
+perl          make
+pkgconf       make
+polkit
+readline
+samurai make
+util-linux

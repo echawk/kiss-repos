@@ -1,0 +1,65 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+#patch -p1 < no-udev.patch
+
+crypto=none
+if pkg-config --exists nss; then
+    crypto=nss
+fi
+if pkg-config --exists gnutls; then
+    crypto=gnutls
+fi
+if [ $crypto = "none" ]; then
+    echo "nss or gnutls need to be installed."
+    exit 1
+fi
+
+if pkg-config --exists gobject-introspection-1.0; then
+    gobject=true
+fi
+
+# Remove intltool
+#sed "s/intltool_xml_cmd/['cp', '@INPUT@', '@OUTPUT@']/g" \
+#    data/meson.build > _
+# mv -f _ data/meson.build
+#sed '/^intltool/d' \
+#    meson.build > _
+# mv -f _ meson.build
+
+command -v dhcpcd   && dhcpcd=true
+command -v iwd      && eiwd=true
+command -v loginctl && logind=elogind
+
+meson setup \
+    -Dprefix=/usr \
+    -Dbuildtype=release \
+    -Dsession_tracking_consolekit=false \
+    -Dsystemdsystemunitdir=no \
+    -Dsystemd_journal=false \
+    -Dintrospection="${gobject:-false}" \
+    -Dmodify_system=true \
+    -Dmodem_manager=false \
+    -Dlibaudit=no \
+    -Dselinux=false \
+    -Dnmtui=false \
+    -Dqt=false \
+    -Dtests=no \
+    -Ddocs=false \
+    -Dmore_asserts=no \
+    -Dmore_logging=false \
+    -Dvapi=false \
+    -Dppp=false \
+    -Dcrypto="${crypto}" \
+    -Diwd="${eiwd:-false}" \
+    -Ddhcpcd="${dhcpcd:-false}" \
+    -Dresolvconf="${eiwd:-false}" \
+    -Dsession_tracking="${logind:-no}" \
+    output
+
+ninja -C output
+ninja -C output install
+
+install -Dm755 networkmanager.run  "$1/etc/sv/networkmanager/run"
+install -Dm644 networkmanager.conf "$1/etc/NetworkManager/NetworkManager.conf"

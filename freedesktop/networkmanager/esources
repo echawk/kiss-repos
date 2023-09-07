@@ -1,0 +1,4 @@
+https://download.gnome.org/sources/NetworkManager/MAJOR.MINOR/NetworkManager-VERSION.tar.xz
+files/networkmanager.conf
+files/networkmanager.run
+patches/no-udev.patch
