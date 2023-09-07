@@ -5,7 +5,7 @@ export DESTDIR="$1"
 sed -e "/'test-.*'/d" meson.build > _
 mv -f _ meson.build
 
-# TODO: add check for gtk+4
+pkg-config --exists gtk4 && gtk4=true
 
 meson setup \
     -Dprefix=/usr \
@@ -13,7 +13,7 @@ meson setup \
     -Dmandir=/usr/share/man \
     -Dlocalstatedir=/var \
     -Dbuildtype=plain \
-    -Dbuild_gtk4=false \
+    -Dbuild_gtk4="${gtk4:-false}" \
     -Dudev=enabled \
     -Dinstalled_tests=false \
     -Dgtk_doc=false \
