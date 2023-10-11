@@ -5,6 +5,10 @@ export DESTDIR="$1"
 sed "/subdir('test/d" meson.build > _
 mv -f _ meson.build
 
+# Fix meson_options.txt for muon
+sed -E "s/'(true|false)'/\1/" meson_options.txt > _
+mv -f _ meson_options.txt
+
 meson setup \
     -Dprefix=/usr \
     -Dsystem_pid_file=/run/dbus/dbus.pid \
