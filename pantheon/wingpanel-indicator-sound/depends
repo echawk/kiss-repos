@@ -1,0 +1,10 @@
+glib
+granite
+gtk+3
+libcanberra
+libnotify
+meson       make
+pulseaudio
+samurai make
+vala        make
+wingpanel

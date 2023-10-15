@@ -1,0 +1,8 @@
+glib
+gobject-introspection
+granite
+libxml2
+meson                 make
+samurai make
+vala                  make
+wingpanel

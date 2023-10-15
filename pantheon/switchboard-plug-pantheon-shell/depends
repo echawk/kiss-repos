@@ -1,0 +1,11 @@
+gexiv2
+gnome-desktop
+gnome-settings-daemon
+granite
+gtk+3
+libgee
+meson                 make
+plank
+samurai make
+switchboard
+vala                  make

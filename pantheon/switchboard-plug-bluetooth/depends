@@ -1,0 +1,6 @@
+granite
+gtk+3
+meson       make
+samurai make
+switchboard
+vala        make

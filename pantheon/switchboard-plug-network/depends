@@ -1,0 +1,8 @@
+granite
+gtk+3
+libnma
+meson          make
+networkmanager
+samurai make
+switchboard
+vala           make

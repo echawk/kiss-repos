@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed 's/connection, string/connection, string?/g' \
+    src/CUPSNotifier.vala > _
+mv -f _ src/CUPSNotifier.vala
+
+meson setup \
+    -Dprefix=/usr \
+    output
+
+ninja -C output
+ninja -C output install

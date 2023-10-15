@@ -1,0 +1,4 @@
+librsvg    make
+meson make
+samurai make
+xcursorgen make

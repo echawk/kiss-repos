@@ -1,0 +1,8 @@
+glib
+gobject-introspection
+granite
+libnotify
+meson                 make
+samurai make
+vala                  make
+wingpanel

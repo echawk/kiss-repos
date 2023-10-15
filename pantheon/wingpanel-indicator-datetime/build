@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+patch -p1 < 00-musl.patch
+sed 's/time_t/int64/g' src/Widgets/calendar/Util.vala > _
+mv -f _ src/Widgets/calendar/Util.vala
+
+meson setup \
+    -Dprefix=/usr \
+    output
+
+ninja -C output
+ninja -C output install

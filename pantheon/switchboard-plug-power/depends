@@ -1,0 +1,7 @@
+dbus
+granite
+meson          make
+polkit
+samurai        make
+switchboard
+vala           make
