@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed_i() {
+    sed "$1" "$2" > _
+    mv -f _ "$2"
+}
+
+# Next release will come with libhandy-1, remove this
+sed_i "s/libhandy-0.0/libhandy-1', version: '>= 0.80.0/g" meson.build
+sed_i "s/Paginator/Carousel/g" src/MainWindow.vala
+sed_i "s/Paginator/Carousel/g" src/PageChecker.vala
+sed_i "s/Paginator/Carousel/g" src/Switcher.vala
+sed_i "s/paginator/carousel/g" src/MainWindow.vala
+sed_i "s/paginator/carousel/g" src/PageChecker.vala
+sed_i "s/paginator/carousel/g" src/Switcher.vala
+
+meson setup \
+    -Dprefix=/usr \
+    output
+
+ninja -C output
+ninja -C output install

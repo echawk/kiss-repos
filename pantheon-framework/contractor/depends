@@ -1,0 +1,5 @@
+glib
+libffi
+libgee
+meson make
+samurai make
