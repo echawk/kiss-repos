@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+patch -p1 < fix-includes.patch
+
+./configure \
+    --prefix=/usr \
+    --localstatedir=/var \
+    --disable-lynx
+
+make
+make install
