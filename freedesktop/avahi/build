@@ -1,0 +1,34 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+autoreconf -vif
+
+./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    --with-distro=none \
+    --sbindir=/usr/bin \
+    --disable-autoipd \
+    --disable-manpages \
+    --disable-mono \
+    --disable-python \
+    --disable-qt4 \
+    --disable-qt5 \
+    --disable-gtk3 \
+    --enable-compat-libdns_sd \
+    --enable-compat-howl \
+    --with-avahi-priv-access-group=network
+
+make
+make install
+
+rm -rf "$1/run"
+
+ln -s avahi-compat-howl.pc            "$1"/usr/lib/pkgconfig/howl.pc
+ln -s avahi-compat-libdns_sd.pc       "$1"/usr/lib/pkgconfig/libdns_sd.pc
+ln -s avahi-compat-libdns_sd/dns_sd.h "$1"/usr/include/
+
+mkdir -p "$1/etc/sv/avahi/"
+cp run   "$1/etc/sv/avahi/"

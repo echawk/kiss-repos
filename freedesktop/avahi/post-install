@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+addgroup -S avahi 2> /dev/null || true
+adduser -S -D -H -h /dev/null -s /sbin/nologin -G avahi -g avahi avahi 2> /dev/null || true
